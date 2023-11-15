@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nginx-pvc
+  name: nginx-pvc-claim
 spec:
   accessModes:
     - ReadWriteOnce
@@ -15,12 +15,12 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-pvc
+  name: nginx-pvc-pod
 spec:
   volumes:
-    - name: nginx-pvc
+    - name: nginx-pvc-vol
       persistentVolumeClaim:
-        claimName: nginx-pvc-pod
+        claimName: nginx-pvc-claim
   containers:
   - name: nginx
     image: nginx:1.14.2
@@ -28,4 +28,4 @@ spec:
     - containerPort: 80
     volumeMounts:
     - mountPath: "/usr/share/nginx/html"
-      name: nginx-pvc
+      name: nginx-pvc-vol
