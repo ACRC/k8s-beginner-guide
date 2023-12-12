@@ -20,7 +20,7 @@ spec:
   volumes:
     - name: nginx-pvc
       persistentVolumeClaim:
-        claimName: nginx-pvc-pod
+        claimName: nginx-pvc
   containers:
   - name: nginx
     image: nginx:1.14.2
